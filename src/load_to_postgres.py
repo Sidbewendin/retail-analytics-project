@@ -1,21 +1,23 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-# PostgreSQL connection
-username = "postgres"
-password = "admin"
-host = "localhost"
+username = "retailadmin"
+password = "25Fondy93?"
+host = "retail-postgres-yameogo.postgres.database.azure.com"
 port = "5432"
-database = "retail_db"
+database = "postgres"
 
 engine = create_engine(
     f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}"
 )
 
-# Load CSV
 df = pd.read_csv("data/processed/fact_sales.csv")
 
-# Send to PostgreSQL
-df.to_sql("fact_sales", engine, if_exists="replace", index=False)
+df.to_sql(
+    "fact_sales_cloud",
+    engine,
+    if_exists="replace",
+    index=False
+)
 
-print("Data loaded successfully into PostgreSQL!")
+print("Data loaded successfully into Azure PostgreSQL!")
