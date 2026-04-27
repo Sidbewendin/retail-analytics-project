@@ -1,11 +1,25 @@
-from sqlalchemy import create_engine, text
+import pandas as pd
+from sqlalchemy import create_engine
 
 engine = create_engine(
-    "postgresql+psycopg2://postgres:25Fondy93?@localhost:5433/retail_db"
+    "postgresql+psycopg2://postgres:My_Password?@localhost:5433/retail_db"
 )
 
-with engine.connect() as conn:
-    result = conn.execute(text("SELECT 1"))
-    print(result.fetchone())
+fact_df = pd.read_csv("data/processed/fact_sales.csv")
+customer_df = pd.read_csv("data/processed/customers.csv")
 
-print("Connection successful!")
+fact_df.to_sql(
+    "factsales",
+    engine,
+    if_exists="replace",
+    index=False
+)
+
+customer_df.to_sql(
+    "dimcustomer",
+    engine,
+    if_exists="replace",
+    index=False
+)
+
+print("Data successfully loaded into PostgreSQL!")
