@@ -1,17 +1,37 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
+# Create connection to PostgreSQL database
 engine = create_engine(
     "postgresql+psycopg2://postgres:postgres@localhost:5432/retail_db"
 )
 
-df = pd.read_csv("data/processed/fact_sales.csv")
+# Load processed datasets
+# -> Fact table (transactions)
+fact_df = pd.read_csv("data/processed/fact_sales.csv")
 
-df.to_sql(
-    "fact_sales",
+# -> Dimension table (customers)
+customer_df = pd.read_csv("data/processed/customers.csv")
+
+
+# Load data into FactSales table
+# -> append data to existing table (do not overwrite schema)
+fact_df.to_sql(
+    "factsales",
     engine,
-    if_exists="replace",
+    if_exists="append",
     index=False
 )
 
-print("Data loaded successfully into PostgreSQL!")
+
+# Load data into DimCustomer table
+# -> append data to existing table
+customer_df.to_sql(
+    "dimcustomer",
+    engine,
+    if_exists="append",
+    index=False
+)
+
+
+print("Data successfully loaded into PostgreSQL (FactSales & DimCustomer)")

@@ -1,6 +1,6 @@
 -- Create customer dimension table, one row represents one customer
 CREATE TABLE DimCustomer (
-    CustomerID INTEGER PRIMARY KEY,
+    CustomerID REAL PRIMARY KEY,
     Frequency INTEGER,
     Monetary FLOAT,
     LastPurchaseDate DATETIME,
