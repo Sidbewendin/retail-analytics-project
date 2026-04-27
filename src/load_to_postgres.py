@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 
 # Create connection to PostgreSQL database
 engine = create_engine(
-    "postgresql+psycopg2://postgres:postgres@localhost:5432/retail_db"
+    "postgresql+psycopg2://postgres:postgres@localhost:5433/retail_db"
 )
 
 # Load processed datasets
