@@ -1,9 +1,12 @@
+import os
+os.environ["PGCLIENTENCODING"] = "utf8"
+
 import pandas as pd
 from sqlalchemy import create_engine
 
 # Create connection to PostgreSQL database
 engine = create_engine(
-    "postgresql+psycopg2://postgres:postgres@localhost:5433/retail_db"
+    "postgresql+psycopg2://postgres:postgres@localhost:5433/retail_db?client_encoding=utf8"
 )
 
 # Load processed datasets
