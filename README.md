@@ -2,68 +2,111 @@
 
 ## Project Overview
 
-This project analyzes retail sales data to identify customer behavior, revenue trends, and business opportunities using:
+This project analyzes retail sales data to identify customer behavior, revenue trends, and business opportunities using Python, SQL, PostgreSQL, Power BI, Docker, CI/CD, and Microsoft Azure.
 
-- Python
-- SQL
-- Power BI
-- RFM Customer Segmentation
-- Business KPI Dashboards
+The objective is to simulate a real professional data workflow from data processing to cloud deployment and business dashboarding.
 
-## Project Objectives
+---
 
-The main goals were:
+## Tech Stack
 
-- Analyze total revenue and customer performance
-- Identify top-performing countries
-- Track monthly revenue trends
-- Segment customers using RFM analysis
-- Build strategic business recommendations
+* Python (Pandas, NumPy, SQLAlchemy)
+* SQL
+* PostgreSQL
+* Power BI
+* Docker
+* Git & GitHub
+* GitHub Actions (CI/CD)
+* Microsoft Azure PostgreSQL Flexible Server
 
-## Tools Used
+---
 
-- Python (Pandas, NumPy)
-- SQL
-- Power BI
-- Git & GitHub
-- Docker
-- Cloud deployment
+## Project Architecture
 
-## Dashboard Pages
+```text
+Raw Data
+↓
+Python ETL Pipeline
+↓
+PostgreSQL Database
+↓
+Power BI Dashboard
+↓
+Business Insights
+```
 
-### 1. Sales Overview
+---
 
-- Total Revenue
-- Total Customers
-- Revenue by Country
-- Monthly Revenue Trend
+## Key Features
 
-### 2. Customer Segmentation
+* Retail sales data analysis using Python and SQL
+* Automated ETL pipeline for data loading
+* PostgreSQL database design and management
+* Local deployment using Docker for reproducibility
+* Interactive Power BI dashboard for KPIs and reporting
+* CI/CD workflow using GitHub Actions
+* Cloud deployment of PostgreSQL on Microsoft Azure
 
-- Customer Segment Distribution
-- Revenue by Segment
-- Average Monetary Value
-- RFM Score Distribution
+---
 
-### 3. Business Recommendations
+## Business KPIs
 
-- VIP Customers KPI
-- Loyal Customers KPI
-- At Risk Customers KPI
-- Lost Customers KPI
+The dashboard focuses on:
 
-### 4. Executive Summary
+* Revenue trends
+* Top-selling products
+* Customer segmentation
+* Regional sales performance
+* Monthly sales evolution
+* Business recommendations
 
-- Key Findings
-- Strategic Priorities
-- Final Recommendations
+---
 
-## Business Recommendations
+## Power BI Dashboard
 
-- Protect VIP Customers
-- Convert Loyal Customers into VIP
-- Re-engage At-Risk Customers
-- Reduce Lost Customer Rate
+### Dashboard Preview
+
+![Sales_Overview](powerbi/image.png)
+
+![Customer_Segmentation](powerbi/image11.png)
+
+![Business_Recommendations](powerbi/image2.png)
+
+![Summary](powerbi/image3.png)
+---
+
+## Docker Usage
+
+Build the Docker image:
+
+```bash
+docker build -t retail-analytics-project .
+```
+
+Run the container:
+
+```bash
+docker run retail-analytics-project
+```
+
+---
+
+## Cloud Deployment
+
+PostgreSQL was deployed to Microsoft Azure PostgreSQL Flexible Server to simulate a production-ready cloud architecture.
+
+This project demonstrates both:
+
+-Local deployment (Docker + PostgreSQL)
+-Cloud deployment (Azure PostgreSQL)
+
+---
+
+## CI/CD
+
+GitHub Actions automatically verifies project quality on each push to GitHub.
+
+---
 
 ## Author
 
