@@ -2,7 +2,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 engine = create_engine(
-    "postgresql+psycopg2://postgres:My_Password?@localhost:5433/retail_db"
+    "postgresql+psycopg2://postgres:25Fondy93?@localhost:5433/retail_db"
 )
 
 fact_df = pd.read_csv("data/processed/fact_sales.csv")
