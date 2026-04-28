@@ -61,6 +61,15 @@ The dashboard focuses on:
 * Business recommendations
 
 ---
+## Key Business Insights
+
+- The company generated approximately 8.9M in total revenue.
+
+- Revenue is highly concentrated in the United Kingdom, which represents the vast majority of total sales.
+
+- Around 33% of customers are at risk of churn (no purchase in the last 90 days), indicating a significant retention issue.
+
+- Only a small group of 274 VIP customers (high spenders) contribute disproportionately to revenue.
 
 ## Power BI Dashboard
 
