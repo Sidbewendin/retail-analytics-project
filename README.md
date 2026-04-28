@@ -68,11 +68,12 @@ The dashboard focuses on:
 
 ![Sales_Overview](powerbi/image.png)
 
-![Customer_Segmentation](powerbi/image-1.png)
+![Customer_Segmentation](powerbi/image1.png)
 
-![Business_Recommendations](powerbi/image-2.png)
+![Business_Recommendations](powerbi/image2.png)
 
-![Summary](powerbi/image-3.png)
+![Summary](powerbi/image3.png)
+
 ---
 
 ## Docker Usage
