@@ -1,75 +1,50 @@
 # Retail Analytics Project
 
 ## Project Overview
+This project builds an end-to-end data analytics pipeline to analyze retail sales data, uncover customer behavior, and generate actionable business insights.
 
-This project analyzes retail sales data to identify customer behavior, revenue trends, and business opportunities using Python, SQL, PostgreSQL, Power BI, Docker, CI/CD, and Microsoft Azure.
-
-The objective is to simulate a real professional data workflow from data processing to cloud deployment and business dashboarding.
-
----
+It simulates a real-world data workflow, from data ingestion and transformation to database storage, analysis, visualization, and deployment.
 
 ## Tech Stack
 
-* Python (Pandas, NumPy, SQLAlchemy)
-* SQL
-* PostgreSQL
-* Power BI
-* Docker
-* Git & GitHub
-* GitHub Actions (CI/CD)
-* Microsoft Azure PostgreSQL Flexible Server
-
----
-
-## Project Architecture
-
-```text
-Raw Data
-↓
-Python ETL Pipeline
-↓
-PostgreSQL Database
-↓
-Power BI Dashboard
-↓
-Business Insights
-```
-
----
+Python (Pandas, NumPy, SQLAlchemy)
+PostgreSQL
+SQL
+Power BI
+Docker
+Git & GitHub
+GitHub Actions (CI/CD)
+Microsoft Azure PostgreSQL Flexible Server
+Project Architecture
+Raw Data → Python ETL Pipeline → PostgreSQL Database → SQL Analysis → Power BI Dashboard → Business Insights
 
 ## Key Features
 
-* Retail sales data analysis using Python and SQL
-* Automated ETL pipeline for data loading
-* PostgreSQL database design and management
-* Local deployment using Docker for reproducibility
-* Interactive Power BI dashboard for KPIs and reporting
-* CI/CD workflow using GitHub Actions
-* Cloud deployment of PostgreSQL on Microsoft Azure
-
----
+- Designed and implemented an ETL pipeline in Python for data cleaning and transformation
+- Built a relational database using PostgreSQL (fact and dimension tables)
+- Performed analytical queries using SQL to extract business insights
+- Developed an interactive Power BI dashboard for KPI monitoring
+- Containerized the data pipeline using Docker for reproducibility
+- Implemented CI/CD with GitHub Actions
+- Deployed PostgreSQL on Microsoft Azure to simulate a cloud environment
 
 ## Business KPIs
 
 The dashboard focuses on:
 
-* Revenue trends
-* Top-selling products
-* Customer segmentation
-* Regional sales performance
-* Monthly sales evolution
-* Business recommendations
+- Revenue trends
+- Customer segmentation (RFM)
+- Regional sales performance
+- Monthly sales evolution
+- Top-performing customers
+- Business recommendations
 
----
 ## Key Business Insights
 
-- The company generated approximately 8.9M in total revenue.
-
-- Revenue is highly concentrated in the United Kingdom, which represents the vast majority of total sales.
-
-- Around 33% of customers are at risk of churn (no purchase in the last 90 days), indicating a significant retention issue.
-
-- Only a small group of 274 VIP customers (high spenders) contribute disproportionately to revenue.
+- The company generated approximately 8.9M in total revenue
+- Revenue is highly concentrated in the United Kingdom, indicating strong dependency on a single market
+- Around 33% of customers are at risk of churn, highlighting a major retention challenge
+- A small group of 274 VIP customers drives a significant portion of total revenue
 
 ## Power BI Dashboard
 
@@ -107,8 +82,8 @@ PostgreSQL was deployed to Microsoft Azure PostgreSQL Flexible Server to simulat
 
 This project demonstrates both:
 
--Local deployment (Docker + PostgreSQL)
--Cloud deployment (Azure PostgreSQL)
+- Local deployment (Docker + PostgreSQL)
+- Cloud deployment (Azure PostgreSQL)
 
 ---
 
