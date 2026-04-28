@@ -66,13 +66,13 @@ The dashboard focuses on:
 
 ### Dashboard Preview
 
-![Sales_Overview](powerbi/image.png)
+![Sales_Overview](powerbi/Image.png)
 
-![Customer_Segmentation](powerbi/image1.png)
+![Customer_Segmentation](powerbi/Image1.png)
 
-![Business_Recommendations](powerbi/image2.png)
+![Business_Recommendations](powerbi/Image2.png)
 
-![Summary](powerbi/image3.png)
+![Summary](powerbi/Image3.png)
 
 ---
 
