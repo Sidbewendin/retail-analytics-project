@@ -9,6 +9,21 @@ jobs:
   test-project:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 25Fondy93?
+          POSTGRES_DB: retail_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres -d retail_db"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -32,5 +47,12 @@ jobs:
       - name: Build Docker image
         run: docker build -t retail-analytics-project .
 
-      - name: Run Docker container (ETL test)
-        run: docker run retail-analytics-project
+      - name: Run Docker container ETL test
+        run: |
+          docker run --network ${{ job.services.postgres.network }} \
+            -e POSTGRES_HOST=postgres \
+            -e POSTGRES_PORT=5432 \
+            -e POSTGRES_USER=postgres \
+            -e POSTGRES_PASSWORD='25Fondy93?' \
+            -e POSTGRES_DB=retail_db \
+            retail-analytics-project
