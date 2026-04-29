@@ -6,7 +6,7 @@ from sqlalchemy.engine import URL
 url = URL.create(
     drivername="postgresql+psycopg2",
     username=os.getenv("POSTGRES_USER", "postgres"),
-    password=os.getenv("POSTGRES_PASSWORD", "25Fondy93?"),
+    password=os.getenv("POSTGRES_PASSWORD", "POSTGRES_PASSWORD"),
     host=os.getenv("POSTGRES_HOST", "localhost"),
     port=int(os.getenv("POSTGRES_PORT", "5433")),
     database=os.getenv("POSTGRES_DB", "retail_db"),
