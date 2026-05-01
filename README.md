@@ -10,6 +10,9 @@ An end-to-end data analytics project including:
 - Customer churn prediction (XGBoost + RFM)
 - Interactive Streamlit app
 
+## Live Demo
+👉 https://ton-app.streamlit.app
+
 ## Project Overview
 This project builds an end-to-end data analytics pipeline to analyze retail sales data, uncover customer behavior, and generate actionable business insights.
 
