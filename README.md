@@ -1,5 +1,15 @@
 # Retail Analytics Project
 
+# Retail Analytics Dashboard
+
+An end-to-end data analytics project including:
+
+- Business KPIs dashboard
+- Sales analysis
+- Sales forecasting (Prophet)
+- Customer churn prediction (XGBoost + RFM)
+- Interactive Streamlit app
+
 ## Project Overview
 This project builds an end-to-end data analytics pipeline to analyze retail sales data, uncover customer behavior, and generate actionable business insights.
 
@@ -90,6 +100,80 @@ This project demonstrates both:
 ## CI/CD
 
 GitHub Actions automatically verifies project quality on each push to GitHub.
+
+---
+
+## Machine Learning – Customer Churn Prediction
+
+## Objective
+
+Predict customer churn to help the business identify and retain at-risk customers.
+
+## Approach
+
+Features built from historical data (before cutoff date)
+Churn defined using future behavior (after cutoff date)
+Prevents data leakage and reflects real-world conditions
+
+## Models
+
+Logistic Regression (baseline)
+Random Forest
+XGBoost
+
+## Final Model
+
+XGBoost with optimized threshold (0.4)
+
+Recall ≈ 90% → detects most churn customers
+ROC AUC ≈ 0.78 → solid performance
+
+---
+
+## Conclusion - Sales Forecasting
+
+In this section, we performed a revenue forecasting analysis based on historical sales data.
+
+First, the `InvoiceDate` column was converted into a datetime format to enable proper time series analysis. Then, transactional data was aggregated on a monthly basis using the `TotalPrice` variable. This step transforms individual sales into a monthly time series that can be used by a forecasting model.
+
+The model used is Prophet. This choice is appropriate because Prophet is designed for business time series data and allows easy modeling of trends over time.
+
+The results show an overall upward trend in revenue. The model predicts continuous growth in the coming months, with revenue expected to reach around one million euros.
+
+To evaluate the model, a time-based split was performed: the last few months were used as test data. The following metrics were obtained:
+
+- MAE ≈ 304,966 €
+- RMSE ≈ 308,020 €
+
+These results indicate that the model captures the general trend, but the error remains relatively high. This can be explained by the limited amount of available data (only 13 months) and the significant variability in monthly revenue.
+
+In conclusion, Prophet provides a solid baseline for understanding sales trends and forecasting future revenue. However, improving the model’s accuracy would require more historical data and potentially the inclusion of additional explanatory variables such as promotions, seasonal effects, or special business events.
+
+---
+
+## Dashboard
+
+![Dashboard](images/dashboard.png)
+
+---
+
+## Top Products
+
+![Top Products](images/top_product.png)
+
+---
+
+## Top Customers
+
+![Top Customers](images/top_customer.png)
+
+---
+
+## Churn Prediction
+
+![Churn Low Risk](images/churn0.png)
+
+![Churn High Risk](images/churn1.png)
 
 ---
 
