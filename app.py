@@ -9,17 +9,64 @@ st.set_page_config(
     layout="wide"
 )
 
-# Load dataset
-df = pd.read_csv("data/processed/fact_sales.csv")
-df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
-df = df[(df["Quantity"] > 0) & (df["UnitPrice"] > 0)]
+# ==============================
+# Load data and models
+# ==============================
 
+@st.cache_data
+def load_sales_data():
+    # Load sales dataset
+    df = pd.read_csv("data/processed/fact_sales.csv")
+
+    # Convert InvoiceDate to datetime
+    df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
+
+    # Remove invalid transactions
+    df = df[(df["Quantity"] > 0) & (df["UnitPrice"] > 0)]
+
+    return df
+
+
+@st.cache_data
+def load_forecast_data():
+    # Load forecast results
+    forecast_df = pd.read_csv("data/processed/forecast_results.csv")
+    forecast_df["ds"] = pd.to_datetime(forecast_df["ds"])
+
+    return forecast_df
+
+
+@st.cache_resource
+def load_churn_model():
+    # Load saved churn model and threshold
+    churn_data = joblib.load("models/churn_model.pkl")
+
+    return churn_data["model"], churn_data["threshold"]
+
+
+df = load_sales_data()
+
+# ==============================
 # App title
+# ==============================
+
 st.title("Retail Analytics Dashboard")
 
+st.markdown(
+    """
+    This dashboard provides business insights from retail sales data, including
+    sales KPIs, top-performing products and customers, sales forecasting, and customer churn prediction.
+    """
+)
+
+# ==============================
 # Sidebar navigation
+# ==============================
+
+st.sidebar.title("Navigation")
+
 page = st.sidebar.radio(
-    "Navigation",
+    "Select a section",
     [
         "Business Dashboard",
         "Top Products & Customers",
@@ -28,7 +75,10 @@ page = st.sidebar.radio(
     ]
 )
 
+# ==============================
 # Sidebar filters
+# ==============================
+
 st.sidebar.header("Filters")
 
 min_date = df["InvoiceDate"].min().date()
@@ -72,6 +122,8 @@ if page == "Business Dashboard":
     col3.metric("Orders", total_orders)
     col4.metric("Products", total_products)
 
+    st.divider()
+
     monthly_sales = (
         df_filtered
         .resample("ME", on="InvoiceDate")["TotalPrice"]
@@ -112,6 +164,8 @@ elif page == "Top Products & Customers":
         y="TotalPrice"
     )
 
+    st.divider()
+
     st.subheader("Top 10 Customers")
 
     top_customers = (
@@ -137,8 +191,11 @@ elif page == "Sales Forecasting":
 
     st.subheader("Sales Forecasting")
 
-    forecast_df = pd.read_csv("data/processed/forecast_results.csv")
-    forecast_df["ds"] = pd.to_datetime(forecast_df["ds"])
+    st.write(
+        "This section displays future revenue predictions generated using Prophet."
+    )
+
+    forecast_df = load_forecast_data()
 
     forecast_display = forecast_df[["ds", "yhat", "yhat_lower", "yhat_upper"]]
 
@@ -148,7 +205,7 @@ elif page == "Sales Forecasting":
         y=["yhat", "yhat_lower", "yhat_upper"]
     )
 
-    st.caption("Forecast generated using Prophet.")
+    st.caption("Forecast generated using Prophet. The lower and upper bounds represent prediction uncertainty.")
 
 # ==============================
 # Page 4: Churn Prediction
@@ -156,32 +213,36 @@ elif page == "Sales Forecasting":
 
 elif page == "Churn Prediction":
 
-    churn_data = joblib.load("models/churn_model.pkl")
-
-    churn_model = churn_data["model"]
-    threshold = churn_data["threshold"]
+    churn_model, threshold = load_churn_model()
 
     st.subheader("Customer Churn Prediction")
 
-    st.write("Enter customer RFM metrics to estimate churn risk.")
-
-    recency = st.number_input(
-        "Recency (days since last purchase)",
-        min_value=0,
-        value=30
+    st.write(
+        "Enter customer RFM metrics to estimate the probability that a customer may churn."
     )
 
-    frequency = st.number_input(
-        "Frequency (number of orders)",
-        min_value=0,
-        value=5
-    )
+    col1, col2, col3 = st.columns(3)
 
-    monetary = st.number_input(
-        "Monetary value (€)",
-        min_value=0.0,
-        value=500.0
-    )
+    with col1:
+        recency = st.number_input(
+            "Recency (days since last purchase)",
+            min_value=0,
+            value=30
+        )
+
+    with col2:
+        frequency = st.number_input(
+            "Frequency (number of orders)",
+            min_value=0,
+            value=5
+        )
+
+    with col3:
+        monetary = st.number_input(
+            "Monetary value (€)",
+            min_value=0.0,
+            value=500.0
+        )
 
     if st.button("Predict Churn Risk"):
 
@@ -201,4 +262,8 @@ elif page == "Churn Prediction":
         st.metric(
             label="Churn Probability",
             value=f"{churn_probability:.0%}"
+        )
+
+        st.caption(
+            f"The decision threshold used by the model is {threshold:.0%}."
         )
