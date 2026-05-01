@@ -11,7 +11,7 @@ An end-to-end data analytics project including:
 - Interactive Streamlit app
 
 ## Live Demo
-👉 https://ton-app.streamlit.app
+https://retail-analytics-project-ig7a4gio9hzlhrrmenaqkc.streamlit.app/
 
 ## Project Overview
 This project builds an end-to-end data analytics pipeline to analyze retail sales data, uncover customer behavior, and generate actionable business insights.
